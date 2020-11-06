@@ -6,15 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class Vida : MonoBehaviour
 {
-    float vida = 100;
+   
     public Image barraVida;
-  
+    void Start(){
+        DatosGlobales.V = 100f;    
+    }
     // Update is called once per frame
     void Update()
     {
-        vida = Mathf.Clamp(vida, 0, 100);
-        barraVida.fillAmount = vida / 100;
-        if (vida == 0)
+        DatosGlobales.V = Mathf.Clamp(DatosGlobales.V, 0, 100);
+        barraVida.fillAmount = DatosGlobales.V / 100;
+        if (DatosGlobales.V == 0)
         {
             
             if (DatosGlobales.S > DatosGlobales.HS)
@@ -27,7 +29,7 @@ public class Vida : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        vida -= 10;
+        DatosGlobales.V -= 2f;
         if (collision.gameObject.tag == "Virus")
         {
             Destroy(collision.gameObject);

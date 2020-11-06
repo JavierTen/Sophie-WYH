@@ -7,10 +7,18 @@ public class Escenas : MonoBehaviour
 {
     // Start is called before the first frame update
 
+    void Update()
+    {
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
+    }
+
     public void Juego()
     {
         DatosGlobales.S = 0;
-        SceneManager.LoadScene("Juego");      
+        SceneManager.LoadScene("Juego");
     }
 
     public void IniciarJuego()
@@ -19,6 +27,6 @@ public class Escenas : MonoBehaviour
         SceneManager.LoadScene("Juego");
     }
 
-    
+
 
 }

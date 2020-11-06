@@ -7,13 +7,15 @@ public class VirusAleatorio : MonoBehaviour
     public GameObject Virus;
     
     GameObject virus;
-    public float tiempodecreacion = 4f, RangoCreacion = 2f;
-    public float maxTIme = 1;
-    public float timer = 0;
+    float tiempodecreacion = 1f, RangoCreacion = 2.8f;
+    float timerC = 0f;
     // Start is called before the first frame update
-    void Start()
-    {
-        InvokeRepeating("Creando", 0.0f, tiempodecreacion);
+    void Update() {
+        if(DatosGlobales.TC > timerC ){
+            timerC = DatosGlobales.TC;
+            InvokeRepeating("Creando", 0.0f, tiempodecreacion-timerC);
+        }
+        
     }
 
     public void Creando()

@@ -10,6 +10,7 @@ public class Progreso : MonoBehaviour
     public AudioClip NextLevel;
     AudioSource audioSource;
     int s = 0;
+    int level = 0;
 
     public Image barraProgreso;
     public GameObject NL;
@@ -22,6 +23,7 @@ public class Progreso : MonoBehaviour
     void Awake()
     {
         audioSource = GetComponent<AudioSource>();
+        DatosGlobales.TC = 0.001f;
     }
 
     // Update is called once per frame
@@ -32,10 +34,20 @@ public class Progreso : MonoBehaviour
         textoP.text = progreso.ToString() + "%";
         if (progreso == 100)
         {
+            DatosGlobales.TC += 0.001f;
             audioSource.PlayOneShot(NextLevel);
             NL.SetActive(true);
             progreso = 0;
-            
+            level += 1;
+            if((level % 2) == 0){
+                DatosGlobales.V += 20;
+            }
+
+        }
+
+        if (Input.GetKey(KeyCode.Escape))
+        {
+            Application.Quit();
         }
 
     }
